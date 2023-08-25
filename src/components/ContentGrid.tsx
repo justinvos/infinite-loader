@@ -1,11 +1,12 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 export function ContentGrid() {
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, error, data, fetchNextPage } = useInfiniteQuery({
     queryKey: ["content"],
-    queryFn: getCardsContent,
+    queryFn: getPicsumContent,
+    getNextPageParam: (_, pages) => pages.length + 1,
   });
 
   if (!data || isLoading) {
@@ -16,19 +17,34 @@ export function ContentGrid() {
     return <p>An error occured: {String(error)}</p>;
   }
 
+  function handleNextPageClick() {
+    fetchNextPage();
+  }
+
+  const allItems = data.pages.flatMap((page) => page);
+
   return (
-    <ul className="grid grid-cols-3 gap-8">
-      {data.map((contentItem) => (
-        <li key={contentItem.id}>
-          <img alt="Test" src={contentItem.download_url} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className="grid grid-cols-3 gap-8">
+        {allItems.map((contentItem) => (
+          <li key={contentItem.id}>
+            <img alt="Test" src={contentItem.download_url} />
+          </li>
+        ))}
+      </ul>
+      <button onClick={handleNextPageClick} type="button">
+        Next page
+      </button>
+    </>
   );
 }
 
-function getCardsContent(): Promise<PicsumPhotosResponseBody> {
-  return fetch("https://picsum.photos/v2/list").then((res) => res.json());
+function getPicsumContent({
+  pageParam = 1,
+}): Promise<PicsumPhotosResponseBody> {
+  return fetch(`https://picsum.photos/v2/list?page=${pageParam}&limit=12`).then(
+    (res) => res.json()
+  );
 }
 
 type PicsumPhotosResponseBody = PicsumContentItem[];
