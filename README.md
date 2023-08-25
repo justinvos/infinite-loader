@@ -51,3 +51,18 @@ One performance issue will be how many scroll events will be triggered and I'll 
 If I find the scroll calculations are causing performance issues, I could throttle that too.
 
 Following general React best-practice should help with most other performance issues on the frontend.
+
+## Issues I ran into:
+
+### @next/next/no-img-element
+
+Next.js default ESLint rules wanted me to use their Image component which could be useful for optimisation.
+
+However when I tried using it, it gave me a "picsum.photos" host is not supported/allowed.
+Because of this, I reverted back to using the standard HTML img tag but it could be a good optimisation.
+
+### Pages off by 1
+
+I found through trial and error that https://picsum.photos/v2/list responds the same with page=0 and page=1. In other words, their index starts at 1.
+
+To determine the next page number, I'm taking the current number of pages and adding 1.
