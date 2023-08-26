@@ -17,7 +17,7 @@ export function ContentGrid() {
 
   return (
     <>
-      <ul className="grid grid-cols-3 gap-8">
+      <ul className="auto-rows-min-75 gap-8 grid grid-cols-3">
         {allContentItems.map((contentItem) => (
           <ContentItem key={contentItem.id} {...contentItem} />
         ))}

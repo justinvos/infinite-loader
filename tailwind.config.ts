@@ -11,6 +11,9 @@ const config: Config = {
       colors: {
         red: "#FF0000",
       },
+      gridAutoRows: {
+        "min-75": "minmax(300px, auto)",
+      },
     },
   },
   plugins: [],
