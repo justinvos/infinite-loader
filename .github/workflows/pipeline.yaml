@@ -2,7 +2,7 @@ name: Infinite Loader Pipeline
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "justin/fix-image-performance"]
 
   workflow_dispatch:
 
