@@ -49,6 +49,7 @@ function transformContentItem(
     id: picsumPhotoItem.id,
     contentType: "photo",
     photoUrl: `https://picsum.photos/id/${picsumPhotoItem.id}/800`,
+    smallPhotoUrl: `https://picsum.photos/id/${picsumPhotoItem.id}/250`,
   };
 }
 
@@ -56,4 +57,5 @@ export interface ContentItemModel {
   id: string;
   contentType: "photo";
   photoUrl: string;
+  smallPhotoUrl: string;
 }
