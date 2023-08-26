@@ -96,6 +96,18 @@ A quick look at Google's PageSpeed test looked great for Desktop and mostly good
 
 The issues it raised where almost entirely about the size of the images I was trying to load. A good optimisation could be to have a mobile-friendly photo URL with a smaller resolution.
 
-![Google PageSpeed Desktop test result](/readme-images/page-speed-desktop.png "Google PageSpeed Desktop test result")
+![First Google PageSpeed Desktop test result](/readme-images/page-speed-desktop-before.png "Google PageSpeed Desktop test result")
 
-![Google PageSpeed Mobile test result](/readme-images/page-speed-mobile.png "Google PageSpeed Mobile test result")
+![First Google PageSpeed Mobile test result](/readme-images/page-speed-mobile-before.png "Google PageSpeed Mobile test result")
+
+### After mobile-friendly images and fetching at build-time
+
+From Google PageSpeed's suggestions, I fixed up a couple things:
+
+1. Added mobile-friendly, smaller resolution images
+2. Set the explicit width and height as suggested by Google PageSpeed test
+3. Pre-fetech the first page of data with Next.js fetching at build-time.
+
+![Second Google PageSpeed Desktop test result](/readme-images/page-speed-desktop-after.png "Google PageSpeed Desktop test result")
+
+![Second Google PageSpeed Mobile test result](/readme-images/page-speed-mobile-after.png "Google PageSpeed Mobile test result")
