@@ -2,7 +2,7 @@ name: Infinite Loader Pipeline
 
 on:
   push:
-    branches: ["main", "justin/deploy-to-github-pages"]
+    branches: ["main"]
 
   workflow_dispatch:
 
