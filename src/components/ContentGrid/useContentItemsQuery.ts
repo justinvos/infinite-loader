@@ -2,11 +2,17 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 const PAGE_SIZE = 12;
 
-export function useContentItemsQuery(): UseContentItemsQueryReturn {
+export function useContentItemsQuery(
+  initialData: PicsumPhotosResponseBody
+): UseContentItemsQueryReturn {
   const { data, fetchNextPage, isFetching } = useInfiniteQuery({
     queryKey: ["content"],
     queryFn: getPicsumPhotos,
     getNextPageParam: (_, pages) => pages.length + 1,
+    initialData: {
+      pages: [initialData],
+      pageParams: [1],
+    },
   });
 
   const allPhotoItems = data?.pages.flatMap((page) => page ?? []) ?? [];
@@ -25,13 +31,15 @@ interface UseContentItemsQueryReturn {
   isFetchingContent: boolean;
 }
 
-function getPicsumPhotos({ pageParam = 1 }): Promise<PicsumPhotosResponseBody> {
+export function getPicsumPhotos({
+  pageParam = 1,
+}): Promise<PicsumPhotosResponseBody> {
   return fetch(
     `https://picsum.photos/v2/list?page=${pageParam}&limit=${PAGE_SIZE}`
   ).then((res) => res.json());
 }
 
-type PicsumPhotosResponseBody = PicsumPhotoItem[];
+export type PicsumPhotosResponseBody = PicsumPhotoItem[];
 
 interface PicsumPhotoItem {
   id: string;
@@ -49,6 +57,7 @@ function transformContentItem(
     id: picsumPhotoItem.id,
     contentType: "photo",
     photoUrl: `https://picsum.photos/id/${picsumPhotoItem.id}/800`,
+    smallPhotoUrl: `https://picsum.photos/id/${picsumPhotoItem.id}/250`,
   };
 }
 
@@ -56,4 +65,5 @@ export interface ContentItemModel {
   id: string;
   contentType: "photo";
   photoUrl: string;
+  smallPhotoUrl: string;
 }

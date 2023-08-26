@@ -1,11 +1,14 @@
 "use client";
 import { ContentItem } from "./ContentItem";
-import { useContentItemsQuery } from "./useContentItemsQuery";
+import {
+  useContentItemsQuery,
+  PicsumPhotosResponseBody,
+} from "./useContentItemsQuery";
 import { useReachBottomListener } from "./useReachBottomListener";
 
-export function ContentGrid() {
+export function ContentGrid({ initialData }: ContentGridProps) {
   const { allContentItems, fetchNextPage, isFetchingContent } =
-    useContentItemsQuery();
+    useContentItemsQuery(initialData);
 
   function handleReachBottom() {
     if (!isFetchingContent) {
@@ -24,4 +27,8 @@ export function ContentGrid() {
       </ul>
     </>
   );
+}
+
+interface ContentGridProps {
+  initialData: PicsumPhotosResponseBody;
 }
