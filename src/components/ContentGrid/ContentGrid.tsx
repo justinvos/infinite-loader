@@ -1,14 +1,19 @@
 "use client";
-
 import { ContentItem } from "./ContentItem";
 import { useContentItemsQuery } from "./useContentItemsQuery";
+import { useReachBottomListener } from "./useReachBottomListener";
 
 export function ContentGrid() {
-  const { allContentItems, fetchNextPage } = useContentItemsQuery();
+  const { allContentItems, fetchNextPage, isFetchingContent } =
+    useContentItemsQuery();
 
-  function handleNextPageClick() {
-    fetchNextPage();
+  function handleReachBottom() {
+    if (!isFetchingContent) {
+      fetchNextPage();
+    }
   }
+
+  useReachBottomListener({ onReachBottom: handleReachBottom });
 
   return (
     <>
@@ -17,9 +22,6 @@ export function ContentGrid() {
           <ContentItem key={contentItem.id} {...contentItem} />
         ))}
       </ul>
-      <button onClick={handleNextPageClick} type="button">
-        Next page
-      </button>
     </>
   );
 }
