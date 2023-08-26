@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       gridAutoRows: {
-        "min-75": "minmax(300px, auto)",
+        "min-content-cell": "minmax(calc(100vw / 3 - 64px), auto)",
       },
     },
   },
