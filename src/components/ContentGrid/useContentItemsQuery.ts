@@ -48,7 +48,7 @@ function transformContentItem(
   return {
     id: picsumPhotoItem.id,
     contentType: "photo",
-    photoUrl: picsumPhotoItem.download_url,
+    photoUrl: `https://picsum.photos/id/${picsumPhotoItem.id}/800`,
   };
 }
 

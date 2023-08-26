@@ -8,11 +8,8 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        red: "#FF0000",
-      },
       gridAutoRows: {
-        "min-75": "minmax(300px, auto)",
+        "min-content-cell": "minmax(calc(100vw / 3 - 64px), auto)",
       },
     },
   },

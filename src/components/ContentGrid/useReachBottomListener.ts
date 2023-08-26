@@ -1,7 +1,7 @@
 import throttle from "lodash/throttle";
 import { useMemo, useEffect } from "react";
 
-const BOTTOM_OFFSET = 100;
+const BOTTOM_OFFSET = 300;
 
 export function useReachBottomListener({
   onReachBottom,
@@ -20,6 +20,9 @@ export function useReachBottomListener({
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
+
+    // Calling handleScroll on load to check if the user begins with the bottom of the page showing (vertical screens)
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
