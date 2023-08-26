@@ -3,17 +3,18 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 const PAGE_SIZE = 12;
 
 export function useContentItemsQuery(): UseContentItemsQueryReturn {
-  const { data, fetchNextPage } = useInfiniteQuery({
+  const { data, fetchNextPage, isFetching } = useInfiniteQuery({
     queryKey: ["content"],
     queryFn: getPicsumPhotos,
     getNextPageParam: (_, pages) => pages.length + 1,
   });
 
-  const allPhotoItems = data?.pages.flatMap((page) => page) ?? [];
+  const allPhotoItems = data?.pages.flatMap((page) => page ?? []) ?? [];
   const allContentItems = allPhotoItems?.map(transformContentItem);
 
   return {
     allContentItems,
+    isFetchingContent: isFetching,
     fetchNextPage,
   };
 }
@@ -21,6 +22,7 @@ export function useContentItemsQuery(): UseContentItemsQueryReturn {
 interface UseContentItemsQueryReturn {
   allContentItems: ContentItemModel[];
   fetchNextPage: () => void;
+  isFetchingContent: boolean;
 }
 
 function getPicsumPhotos({ pageParam = 1 }): Promise<PicsumPhotosResponseBody> {

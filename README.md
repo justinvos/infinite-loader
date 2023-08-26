@@ -66,3 +66,18 @@ Because of this, I reverted back to using the standard HTML img tag but it could
 I found through trial and error that https://picsum.photos/v2/list responds the same with page=0 and page=1. In other words, their index starts at 1.
 
 To determine the next page number, I'm taking the current number of pages and adding 1.
+
+### 2 pages loading when scrolling to bottom
+
+This bug occured when I reached to the bottom of the page and after successfully fetching the next page.
+The isFetchingContent boolean would then be reset to false by react-query and before the images had time to load, another fetch was being made.
+
+Setting a minimum height on the grid rows meant that as soon as React re-rendered with the new content, the user would no longer be at the bottom of the page.
+
+### radash throttle vs lodash throttle
+
+I started by using radash's throttle function but ran into an issue with handleScroll invocations being too early in the scroll and not recalling when the user finished the scrolling to the bottom of the page.
+
+By looking at [radash's documentation on the throttle timing](https://radash-docs.vercel.app/docs/curry/throttle#timing), I found this was by design.
+
+[Lodash's throttle](https://radash-docs.vercel.app/docs/curry/throttle#timing) has leading and trailing options and with the default trailing=true, I was getting that final handleScroll at the end of the user's scroll.
