@@ -81,3 +81,21 @@ I started by using radash's throttle function but ran into an issue with handleS
 By looking at [radash's documentation on the throttle timing](https://radash-docs.vercel.app/docs/curry/throttle#timing), I found this was by design.
 
 [Lodash's throttle](https://radash-docs.vercel.app/docs/curry/throttle#timing) has leading and trailing options and with the default trailing=true, I was getting that final handleScroll at the end of the user's scroll.
+
+### Deploying Next.js to GitHub Pages
+
+I ran into 2 issues, first was with Next.js v13 not supporting SSG builds by default anymore.
+(Next.js Static Exports configuration change)[https://nextjs.org/docs/pages/building-your-application/deploying/static-exports]
+
+When testing the GitHub actions build on my own branch, a branch protection rule blocked me from deployment.
+(Solution on GitHub thread)[https://github.com/orgs/community/discussions/39054#discussioncomment-6727766]
+
+### Google PageSpeed Insights test
+
+A quick look at Google's PageSpeed test looked great for Desktop and mostly good for Mobile.
+
+The issues it raised where almost entirely about the size of the images I was trying to load. A good optimisation could be to have a mobile-friendly photo URL with a smaller resolution.
+
+![Google PageSpeed Desktop test result](/readme-images/page-speed-desktop.png "Google PageSpeed Desktop test result")
+
+![Google PageSpeed Mobile test result](/readme-images/page-speed-mobile.png "Google PageSpeed Mobile test result")
