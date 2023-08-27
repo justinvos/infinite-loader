@@ -41,9 +41,9 @@ interface InfiniteLoaderProps<TContent> {
   initialData?: TContent[];
   queryPage: (pageNumber: number) => Promise<TContent[]>;
   renderContainer: (props: React.PropsWithChildren<{}>) => JSX.Element;
-  renderItem: (props: RenderItemProps<TContent>) => JSX.Element;
+  renderItem: (props: InfiniteLoaderItemProps<TContent>) => JSX.Element;
 }
 
-export interface RenderItemProps<TContent> {
+export interface InfiniteLoaderItemProps<TContent> {
   content: TContent;
 }

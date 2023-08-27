@@ -1,5 +1,8 @@
 "use client";
-import { InfiniteLoader, RenderItemProps } from "@/components/InfiniteLoader";
+import {
+  InfiniteLoader,
+  InfiniteLoaderItemProps,
+} from "@/components/InfiniteLoader";
 import { queryPicsumPhotos, PicsumPhotoContentItem } from "./queryPicsumPhotos";
 
 export function PicsumPhotosInfiniteLoader({
@@ -27,7 +30,7 @@ function Container({ children }: React.PropsWithChildren<{}>) {
   );
 }
 
-function Item({ content }: RenderItemProps<PicsumPhotoContentItem>) {
+function Item({ content }: InfiniteLoaderItemProps<PicsumPhotoContentItem>) {
   return (
     <li>
       <picture>
