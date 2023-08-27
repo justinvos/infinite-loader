@@ -8,10 +8,12 @@ export function useContentItemsQuery<TContent>({
     queryKey: ["content"],
     queryFn: ({ pageParam = 0 }) => queryPage(pageParam),
     getNextPageParam: (_, pages) => pages.length,
-    initialData: {
-      pages: [initialData],
-      pageParams: [0],
-    },
+    initialData: initialData
+      ? {
+          pages: [initialData],
+          pageParams: [0],
+        }
+      : undefined,
   });
 
   const allContentItems = data?.pages.flatMap((page) => page ?? []) ?? [];
