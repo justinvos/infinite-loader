@@ -1,9 +1,8 @@
 import throttle from "lodash/throttle";
 import { useMemo, useEffect } from "react";
 
-const BOTTOM_OFFSET = 300;
-
 export function useReachBottomListener({
+  bottomOffset,
   onReachBottom,
 }: UseReachBottomListenerProps) {
   const handleScroll = useMemo(
@@ -11,11 +10,11 @@ export function useReachBottomListener({
       throttle(() => {
         const distanceFromBottom = calculateDistanceFromBottom();
 
-        if (distanceFromBottom < BOTTOM_OFFSET) {
+        if (distanceFromBottom < bottomOffset) {
           onReachBottom();
         }
       }, 100),
-    [onReachBottom]
+    [bottomOffset, onReachBottom]
   );
 
   useEffect(() => {
@@ -31,6 +30,7 @@ export function useReachBottomListener({
 }
 
 interface UseReachBottomListenerProps {
+  bottomOffset: number;
   onReachBottom: () => void;
 }
 

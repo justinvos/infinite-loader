@@ -1,7 +1,8 @@
-import { ContentGrid, getPicsumPhotos } from "@/components/ContentGrid";
+import { PicsumPhotosInfiniteLoader } from "./PicsumPhotosInfiniteLoader";
+import { queryPicsumPhotos } from "./queryPicsumPhotos";
 
 export default async function Home() {
-  const initialData = await getPicsumPhotos({ pageParam: 1 });
+  const initialData = await queryPicsumPhotos(0);
 
-  return <ContentGrid initialData={initialData} />;
+  return <PicsumPhotosInfiniteLoader initialData={initialData} />;
 }
