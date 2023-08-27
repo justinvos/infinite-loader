@@ -16,7 +16,7 @@ Additional notes:
 - This does not need to be a production ready component, aside from implementing the requirements, mentioning any additional options you would bake into the component, and how, is enough.
 - You could use any API you want, but if you're out of ideas (we could reformulate this part with out of ideas), you could use this one: https://picsum.photos/v2/list
 
-## Challenges to solve:
+## Challenges I'm expecting:
 
 ### How to know if scrolled to bottom
 
@@ -52,7 +52,7 @@ If I find the scroll calculations are causing performance issues, I could thrott
 
 Following general React best-practice should help with most other performance issues on the frontend.
 
-## Issues I ran into:
+## Challenges I found and worked through:
 
 ### @next/next/no-img-element
 
@@ -111,3 +111,10 @@ From Google PageSpeed's suggestions, I fixed up a couple things:
 ![Second Google PageSpeed Desktop test result](/readme-images/page-speed-desktop-after.png "Google PageSpeed Desktop test result")
 
 ![Second Google PageSpeed Mobile test result](/readme-images/page-speed-mobile-after.png "Google PageSpeed Mobile test result")
+
+## What to do next
+
+- Make the InfiniteLoader support other components below it (not page height-based)
+- Better alt text on photos
+- Cache the webpages for longer
+- Reduce the server's time-to-first-byte
