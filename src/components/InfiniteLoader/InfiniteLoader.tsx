@@ -1,6 +1,5 @@
 "use client";
 
-import { InfiniteLoaderBaseContent } from "./BaseContent";
 import { useContentItemsQuery } from "./useContentItemsQuery";
 import { useReachBottomListener } from "./useReachBottomListener";
 
@@ -46,4 +45,8 @@ interface InfiniteLoaderProps<TContent> {
 
 export interface InfiniteLoaderItemProps<TContent> {
   content: TContent;
+}
+
+export interface InfiniteLoaderBaseContent {
+  key: string;
 }

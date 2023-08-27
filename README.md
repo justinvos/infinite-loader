@@ -1,5 +1,20 @@
 # Infinite Loader
 
+## Solution
+
+The generic InfiniteLoader component is located at [src/components/InfiniteLoader/InfiniteLoader.tsx](https://github.com/justinvos/infinite-loader/blob/main/src/components/InfiniteLoader/InfiniteLoader.tsx).
+This was built with React, TypeScript, react-query and lodash/throttle.
+
+The InfiniteLoader’s props make it very generic and reusable.
+
+- The queryPage prop can take any Promise function that will query/fetch the data from any API.
+- The renderContainer and renderItem props follow the render props pattern and enable customisation of how the infinite loader is rendered, structured and styled.
+- The initialData prop enables support for pre-fetched content from the server for performance gains.
+- The data type of all of these props use TypeScript generics to support any shape the user needs/wants.
+
+An example of usage of the InfiniteLoader component is located at [src/app/PicsumPhotosInfiniteLoader.tsx](https://github.com/justinvos/infinite-loader/blob/main/src/app/PicsumPhotosInfiniteLoader.tsx).
+The example is built using Next.js, Tailwind and built-in fetch.
+
 ## Requirements
 
 Create an infinite loader component, with the following requirements:
@@ -114,7 +129,10 @@ From Google PageSpeed's suggestions, I fixed up a couple things:
 
 ## What to do next
 
-- Make the InfiniteLoader support other components below it (not page height-based)
+- Make the InfiniteLoader support other components below it (not assuming it's at the bottom of the whole page)
 - Better alt text on photos
 - Cache the webpages for longer
 - Reduce the server's time-to-first-byte
+- Playwright/Cypress UI test
+- Loading states and error states
+- Edge cases and error handling
