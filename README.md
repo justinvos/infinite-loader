@@ -1,5 +1,7 @@
 # Infinite Loader
 
+Live demo: https://vos.nz/infinite-loader
+
 ## Solution
 
 The generic InfiniteLoader component is located at [src/components/InfiniteLoader/InfiniteLoader.tsx](https://github.com/justinvos/infinite-loader/blob/main/src/components/InfiniteLoader/InfiniteLoader.tsx).
@@ -14,6 +16,8 @@ The InfiniteLoader’s props make it very generic and reusable.
 
 An example of usage of the InfiniteLoader component is located at [src/app/PicsumPhotosInfiniteLoader.tsx](https://github.com/justinvos/infinite-loader/blob/main/src/app/PicsumPhotosInfiniteLoader.tsx).
 The example is built using Next.js, Tailwind and built-in fetch.
+
+The example is hosted and can be viewed at https://vos.nz/infinite-loader.
 
 ## Requirements
 
